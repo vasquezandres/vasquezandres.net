@@ -286,6 +286,8 @@
         const text = link.innerText.trim();
         const url = link.href;
 
+        console.log('CLICK EN LINK:', text, url);
+
         gtag('event', 'link_click', {
           link_text: text,
           link_url: url
