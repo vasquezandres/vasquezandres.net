@@ -1,0 +1,188 @@
+:root{
+  --bg: #19162d;
+  --bg2:#221d44;
+  --text:#f2f3f8;
+  --muted:#c7c9d9;
+  --gold:#f1c40f;       /* dorado cálido */
+  --pill:#ffffff;
+  --pill-text:#151515;
+  --outline:rgba(255,255,255,.25);
+  --maxw: 760px;
+  --pillw: 560px;       /* ancho de todas las píldoras */
+  --radius: 22px;
+  --pv: 16px;
+  --ph: 18px;
+}
+
+*{ box-sizing:border-box }
+body{
+  margin:0; color:var(--text); background:
+    radial-gradient(1100px 600px at 10% -20%, var(--bg2), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, #2e275f, transparent 50%),
+    var(--bg);
+  font: 16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:flex; flex-direction:column; min-height:100dvh;
+}
+.container{ width:min(92%, var(--maxw)); margin: 0 auto 28px; }
+h1{ font-size:clamp(26px,4vw,36px); text-align:center; margin:0 }
+.tagline{ color:var(--muted); text-align:center; margin:6px 0 0 }
+
+/* Hero */
+.hero{ position:relative; padding:62px 0 18px; }
+.hero-bg{
+  position:absolute; inset:0;
+  background-image:url('https://images.unsplash.com/photo-1516383607781-913a0c9a0f58?q=80&w=1600&auto=format&fit=crop');
+  /* Si luego quieres tu foto, cambia esta URL */
+  background-size:cover; background-position:center; opacity:.16; filter:saturate(1.1);
+}
+.hero-inner{ position:relative; width:min(92%,var(--maxw)); margin:0 auto; text-align:center }
+.avatar{
+  width:112px; height:112px; border-radius:50%; border:3px solid rgba(255,255,255,.9);
+  box-shadow:0 10px 30px rgba(0,0,0,.35); display:block; margin:0 auto 10px;
+}
+
+/* Redes */
+.social-row{
+  margin:14px auto 4px; display:flex; gap:12px; justify-content:center;
+}
+.social-row a{
+  width:44px; height:44px; display:grid; place-items:center;
+  color:#fff; border:1px solid var(--outline);
+  border-radius:50%; text-decoration:none;
+  transition: background .2s, transform .12s, color .2s;
+}
+.social-row a:hover{ background: rgba(255,255,255,.1); transform: translateY(-1px); }
+
+/* Expandibles */
+.expandable{ margin:14px 0; }
+.pill{
+  display:flex; align-items:center; justify-content:space-between;
+  width:min(92%, var(--pillw)); margin:14px auto 0;
+  background: var(--pill); color: var(--pill-text);
+  padding: var(--pv) var(--ph);
+  border-radius: var(--radius);
+  border:0; cursor:pointer; font-weight:800;
+  box-shadow:0 16px 30px rgba(0,0,0,.16);
+  transition: transform .12s, box-shadow .12s, background .18s, color .18s;
+}
+.pill-title{ width:100%; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center }
+.pill i{ font-size:1.05rem }
+.pill:hover{ transform:translateY(-2px); box-shadow:0 22px 36px rgba(0,0,0,.20); background:#fff7d0 }
+.expandable.open .head{ background:var(--gold); color:#000 }
+
+.chevron{ transition: transform .18s }
+.expandable.open .chevron{ transform: rotate(180deg) }
+
+/* Cuerpo animado (misma caja) */
+.pill-body{
+  overflow:hidden;
+  width:min(92%, var(--pillw));
+  margin:0 auto;
+  max-height:0;
+  opacity:0;
+  transition:max-height .35s ease, opacity .25s ease;
+}
+.pill-content{
+  background:var(--pill); color:var(--pill-text);
+  border-radius:0 0 var(--radius) var(--radius);
+  padding: 18px 22px 20px;
+  text-align:center;          /* centrado como pediste */
+  box-shadow:0 16px 30px rgba(0,0,0,.16);
+}
+
+/* Subpíldoras dentro de una categoría */
+.subpill{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  width:min(92%, var(--pillw));
+  margin:12px auto 0;
+  background: var(--pill); color: var(--pill-text);
+  padding: var(--pv) var(--ph);
+  border-radius: var(--radius);
+  text-decoration:none; font-weight:800; box-shadow:0 16px 30px rgba(0,0,0,.12);
+  transition: transform .12s, box-shadow .12s, background .18s, color .18s;
+}
+.subpill:hover{ transform:translateY(-2px); box-shadow:0 22px 36px rgba(0,0,0,.18); background:#fff7d0 }
+
+/* Tarjeta de video del mismo estilo */
+.subpill.media{
+  position:relative; overflow:hidden; padding:0; height:160px;
+}
+.subpill.media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:contrast(1.1) saturate(1.05);
+}
+.subpill.media .media-title{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:10px 12px; text-align:center; background:rgba(0,0,0,.45); color:#fff; font-weight:800;
+}
+.subpill.media:hover .media-title{ background:rgba(0,0,0,.35) }
+
+/* Footer */
+.footer{ text-align:center; color:var(--muted); padding:18px 0 24px; margin-top:auto }
+
+/* ====== FIX SOLO PARA "Sobre mí" (#blk-about) ====== */
+
+/* El wrapper toma el ancho y el radio para unir head + body */
+#blk-about{
+  width: min(92%, var(--pillw));
+  margin: 14px auto 0;
+  border-radius: var(--radius);
+  overflow: hidden;             /* une las esquinas: sin cortes */
+  background: transparent;      /* cerrado: igual que antes */
+  box-shadow: none;             /* cerrado: sin sombra extra */
+}
+
+/* Cuando está ABIERTO: el wrapper pinta TODO (una sola pieza dorada) */
+#blk-about.open{
+  background: var(--gold);      /* dorado cálido en toda la pieza */
+  box-shadow: 0 16px 30px rgba(0,0,0,.16);
+  transition: background .25s ease, box-shadow .25s ease;
+}
+#blk-about.open:hover{
+  background: #ffe88b;          /* hover dorado más claro, como pediste */
+}
+
+/* La CABECERA (botón .head) deja de pintar su propia tarjeta al estar abierta */
+#blk-about .head{
+  /* aseguramos que “pegue” al body */
+  margin: 0;                    /* sin separación vertical */
+  width: 100%;                  /* que ocupe el wrapper */
+}
+#blk-about.open .head{
+  background: transparent !important;  /* el dorado ya lo pinta el wrapper */
+  color: #000;
+  box-shadow: none !important;         /* evita doble sombra */
+  border-bottom-left-radius: 0;        /* una sola pieza */
+  border-bottom-right-radius: 0;
+}
+
+/* El CUERPO no debe crear otra “tarjeta” debajo */
+#blk-about .pill-body{
+  width: 100%;                  /* hereda el ancho del wrapper */
+  margin: 0;                    /* sin márgenes que creen líneas */
+}
+#blk-about.open .pill-content{
+  background: transparent !important;  /* usa el dorado del wrapper */
+  box-shadow: none !important;         /* sin sombra propia */
+  color: #000;
+  border-radius: 0 0 var(--radius) var(--radius); /* cierra la píldora */
+  padding-top: 16px;                   /* respirito bajo el título */
+  border-top: 0;                       /* cero “corte” */
+}
+
+/* Opcional: si quieres que el texto en “Sobre mí” se vea 100% como en las otras secciones,
+   quita la siguiente línea; si lo prefieres centrado, déjala. */
+#blk-about .pill-content{ text-align: center; }
+
+/* ===== Bloque del reproductor Spotify ===== */
+.spotify-player {
+  max-width: 560px;
+  margin: 25px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform .25s ease;
+}
+.spotify-player:hover {
+  transform: scale(1.00);
+}
