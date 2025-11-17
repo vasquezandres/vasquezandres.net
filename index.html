@@ -47,12 +47,20 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+
+  <div class="bg-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
   <header class="hero">
     <div class="hero-bg"></div>
     <div class="hero-inner">
-      <img class="avatar"
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-zmIkbzVuamvhAtF-WcTHgojypu_u_YYisALIDfiBFIRPTy_h1PKyesZv2-6Q5CP9pVda423PjUL8YjCLj4j0p5j3UL3fJkNqSqpd-dsavoIOMwNVQ73OJiypaRD8xHAWM72YPjKQz6BJEQPLAFTjFq0sQUA7JMJJIgJo6O8zWNWFNjh0QdTVeC6Fp0o/s320/20240331_180531.jpg"
-        alt="Andrés Vásquez">
+      <div class="avatar-wrap">
+        <img class="avatar"
+          src="https://cdn.solutechcloud.com/vsqz/andres.webp"
+          alt="Andrés Vásquez">
+      </div>
       <h1>Andrés Vásquez</h1>
       <p class="tagline">Proyectos, música, enlaces y contacto.</p>
 
@@ -74,6 +82,21 @@
           <i class="fa-brands fa-tiktok"></i>
         </a>
       </nav>
+              <nav class="social-row" aria-label="Redes sociales">
+        <!-- ... tus enlaces actuales ... -->
+      </nav>
+
+      <div class="quick-actions">
+        <button type="button" id="btn-copy-contact" class="qa-btn">
+          <i class="fa-regular fa-copy"></i>
+          Copiar info
+        </button>
+        <button type="button" id="btn-share" class="qa-btn">
+          <i class="fa-solid fa-share-nodes"></i>
+          Compartir
+        </button>
+      </div>
+      <p class="origin-msg" id="origin-msg" aria-live="polite"></p>
     </div>
   </header>
 
@@ -119,16 +142,16 @@
       </button>
       <div class="pill-body">
         <a class="subpill" href="https://open.spotify.com/intl-es/artist/12JBtVm7IlbA7SSPCjLL40" target="_blank" rel="noopener">
-          <i class="fa-brands fa-spotify"></i> Spotify
+          <i class="fa-brands fa-spotify"></i><span>Spotify</span>
         </a>
         <a class="subpill" href="https://music.apple.com/es/artist/andrestoteles/1811336287" target="_blank" rel="noopener">
-          <i class="fa-brands fa-apple"></i> Apple Music
+          <i class="fa-brands fa-apple"></i><span>Apple Music</span>
         </a>
         <a class="subpill" href="https://music.amazon.com/artists/B0F6VV5Z5K/andrestoteles" target="_blank" rel="noopener">
-          <i class="fa-brands fa-amazon"></i> Amazon Music
+          <i class="fa-brands fa-amazon"></i><span>Amazon Music</span>
         </a>
         <a class="subpill" href="https://www.youtube.com/@andrestoteles" target="_blank" rel="noopener">
-          <i class="fa-brands fa-youtube"></i> YouTube Music
+          <i class="fa-brands fa-youtube"></i><span>YouTube Music</span>
         </a>
 
         <!-- Tarjeta uniforme para video (imagen -> YouTube) -->
@@ -147,19 +170,19 @@
       </button>
       <div class="pill-body">
         <a class="subpill" href="https://www.solutechpanama.com" target="_blank" rel="noopener">
-          <i class="fa-solid fa-computer"></i> Solutech Panamá
+          <i class="fa-solid fa-computer"></i> <span>Solutech Panamá</span>
         </a>
         <a class="subpill" href="https://www.market.com.ve" target="_blank" rel="noopener">
-          <i class="fa-solid fa-store"></i> USA Market Valera
+          <i class="fa-solid fa-store"></i> <span>USA Market Valera</span>
         </a>
         <a class="subpill" href="https://www.andrestoteles.com" target="_blank" rel="noopener">
-          <i class="fa-solid fa-star"></i> Andrestoteles
+          <i class="fa-solid fa-star"></i> <span>Andrestoteles</span>
         </a>
         <a class="subpill" href="https://t.me/andresvasquez" target="_blank" rel="noopener">
-          <i class="fa-brands fa-telegram"></i> Telegram
+          <i class="fa-brands fa-telegram"></i> <span>Telegram</span>
         </a>
         <a class="subpill" href="https://wa.me/50768886778" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span>
         </a>
       </div>
     </section>
@@ -172,19 +195,19 @@
       </button>
       <div class="pill-body">
         <a class="subpill" href="https://steamcommunity.com/id/andresvasquez/" target="_blank" rel="noopener">
-          <i class="fa-brands fa-steam"></i> Steam
+          <i class="fa-brands fa-steam"></i> <span>Steam</span>
         </a>
         <a class="subpill" href="https://boardgamegeek.com/collection/user/Vsqz" target="_blank" rel="noopener">
-          <i class="fa-solid fa-dice"></i> BoardGameGeek
+          <i class="fa-solid fa-dice"></i> <span>BoardGameGeek</span>
         </a>
         <a class="subpill" href="https://www.fragrantica.es/miembros/95710" target="_blank" rel="noopener">
-          <i class="fa-solid fa-spray-can-sparkles"></i> Fragrantica
+          <i class="fa-solid fa-spray-can-sparkles"></i> <span>Fragrantica</span>
         </a>
         <a class="subpill" href="https://www.twitch.tv/vasquezandres" target="_blank" rel="noopener">
-          <i class="fa-brands fa-twitch"></i> Twitch
+          <i class="fa-brands fa-twitch"></i> <span>Twitch</span>
         </a>
         <a class="subpill" href="https://www.youtube.com/c/AndresVasquez90" target="_blank" rel="noopener">
-          <i class="fa-brands fa-youtube"></i> YouTube
+          <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
         </a>
       </div>
     </section>
@@ -197,10 +220,10 @@
       </button>
       <div class="pill-body">
         <a class="subpill" href="https://plisplis.com/wishlist.php?publicwishlist=7980affc-a8e6-46a3-98df-8a47262f88d6" target="_blank" rel="noopener">
-          <i class="fa-solid fa-gift"></i> PlisPlis
+          <i class="fa-solid fa-gift"></i> <span>PlisPlis</span>
         </a>
         <a class="subpill" href="https://www.amazon.com/hz/wishlist/ls/33LNHZPI2D9WY" target="_blank" rel="noopener">
-          <i class="fa-brands fa-amazon"></i> Lista Amazon
+          <i class="fa-brands fa-amazon"></i> <span>Lista Amazon</span>
         </a>
       </div>
     </section>
@@ -294,6 +317,129 @@
         });
       });
     });
+
+    // ==== Botón "Copiar info de contacto" ====
+    const copyBtn = document.getElementById('btn-copy-contact');
+    const shareBtn = document.getElementById('btn-share');
+
+    if (copyBtn) {
+      const contactText = [
+        'Andrés Vásquez (Andrestoteles)',
+        'Sitio web: https://vasquezandres.net',
+        'Instagram: @andresvasquez90',
+        'YouTube: @andrestoteles',
+        'Spotify: Andrestoteles',
+        'TikTok: @vasquezandres90'
+      ].join('\n');
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(contactText);
+          alert('Información copiada al portapapeles ✅');
+        } catch (e) {
+          alert('No se pudo copiar la información. Puedes copiarla manualmente.');
+        }
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', {
+            action: 'copy_contact'
+          });
+        }
+      });
+    }
+
+    // ==== Botón "Compartir mi página" (Web Share API) ====
+    if (shareBtn) {
+      const shareData = {
+        title: 'Andrés Vásquez — Enlaces',
+        text: 'Mis enlaces oficiales, música y proyectos.',
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        shareBtn.addEventListener('click', async () => {
+          try {
+            await navigator.share(shareData);
+            if (typeof gtag === 'function') {
+              gtag('event', 'cta_click', {
+                action: 'share_web'
+              });
+            }
+          } catch (e) {
+            // usuario canceló, no pasa nada
+          }
+        });
+      } else {
+        // Fallback: copiar enlace si el navegador no soporta navigator.share
+        shareBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareData.url);
+            alert('Enlace copiado para compartir ✅');
+            if (typeof gtag === 'function') {
+              gtag('event', 'cta_click', {
+                action: 'share_copy'
+              });
+            }
+          } catch (e) {
+            alert('No se pudo copiar el enlace :(');
+          }
+        });
+      }
+    }
+
+    // ===== SALUDO DINÁMICO + DETECCIÓN REAL DE ORIGEN =====
+    (function(){
+
+      const tagline = document.querySelector('.tagline');
+      const originEl = document.getElementById('origin-msg');
+
+      if (!tagline || !originEl) return;
+
+      // --- Saludo según hora
+      const h = new Date().getHours();
+      let saludo = (h < 6) ? 'Buenas noches'
+                : (h < 12) ? 'Buenos días'
+                : (h < 19) ? 'Buenas tardes'
+                : 'Buenas noches';
+
+      // Mensaje base:
+      const baseMsg = 'Aquí encontrarás todos mis enlaces, redes sociales y proyectos. ¡Gracias por tu apoyo!';
+
+      // --- Detectar red social REAL por referrer
+      const ref = document.referrer.toLowerCase();
+      let origen = null;
+
+      if(ref.includes('instagram.com') || ref.includes('l.instagram.com')){
+        origen = 'instagram';
+      } else if(ref.includes('tiktok.com')){
+        origen = 'tiktok';
+      }
+
+      // --- Construir mensaje
+      if(origen === 'instagram'){
+        originEl.textContent = `${saludo}, gracias por venir desde Instagram 👋. ${baseMsg}`;
+        originEl.classList.add('visible');
+
+        if(typeof gtag === 'function'){
+          gtag('event','origin_detected',{origin:'instagram'});
+        }
+
+      } else if(origen === 'tiktok'){
+        originEl.textContent = `${saludo}, gracias por venir desde TikTok 🔥. ${baseMsg}`;
+        originEl.classList.add('visible');
+
+        if(typeof gtag === 'function'){
+          gtag('event','origin_detected',{origin:'tiktok'});
+        }
+
+      } else {
+        // visitante normal
+        tagline.textContent = `${saludo}. Proyectos, música, enlaces y contacto.`;
+      }
+
+    })();
+
+
   </script>
 
 </body>
