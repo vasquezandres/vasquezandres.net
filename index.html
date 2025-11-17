@@ -1,428 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andres Vasquez — Enlaces, música y proyectos</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrés Vásquez | Enlaces</title>
+  <meta name="description" content="Proyectos, música, enlaces y contacto de Andrés Vásquez (Andrestoteles).">
+  <link rel="canonical" href="https://vasquezandres.net/">
 
-    <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            overflow: auto; /* Permite el scroll en la página */
-        }
-        #particles-js {
-            position: fixed; /* Fondo fijo */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #2A215C; /* Azul más vivo */
-            z-index: -1; /* Fondo detrás del contenido */
-        }
-        .container {
-            width: 80%;
-            max-width: 400px;
-            margin: 50px auto;
-            background: rgba(255, 255, 255, 0.0);
-            padding: 30px;
-            padding-top: 50px;
-            border-radius: 25px;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.0);
-            position: relative; /* Asegura que el contenido esté sobre el fondo */
-            z-index: 1;
-        }
-        .profile img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 3px solid #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .profile h2 {
-            margin: 5px 0;
-            font-size: 1.5rem;
-            color: #FFFFFF;
-        }
-        .description {
-            background: #C6DCFF; /* Azul claro */
-            padding: 25px;
-            border-radius: 35px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .description:hover {
-            background: #E6BC27; /* Azul claro más oscuro */
-            transform: scale(1.02);
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XEDXZLWRE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6XEDXZLWRE');
+  </script>
 
-        }
-        .description p {
-            margin: 10px 0 0;
-            display: none;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-            line-height: 1.6;
-        }
-        .links a { /* Redes Sociales */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #007bff; /* Azul principal */
-            color: white;
-            text-decoration: none;
-            padding: 25px;
-            margin: 15px 0;
-            border-radius: 35px;
-            transition: transform 0.2s, background 0.3s;
-        }
-        .links a:hover, .links a:focus {
-            background: #0056b3; /* Azul más oscuro */
-            transform: scale(1.05);
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        referrerpolicy="no-referrer">
 
-        .links a i {
-            margin-right: 10px;
-        }
-        .category {
-            margin-bottom: 20px;
-        }
-        .category h3 {
-            font-size: 1rem; /* Mismo tamaño que los enlaces de redes sociales */
-            color: #FFFFFF;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            gap: 10px; /* Separación entre el ícono y el texto */
-        }
-        .category h3 i {
-            margin-right: 5px; /* Espacio entre ícono y texto */
-            font-size: 1rem;
-        }
-        .toggle-button { /* Categorias */
-            font-size: 1rem; /* Mismo tamaño que los enlaces de redes sociales */
-            background: #007bac;
-            color: white;
-            border: none;
-            padding: 25px;
-            border-radius: 35px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            transition: background 0.3s, transform 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px; /* Separación entre el ícono y el texto */
-        }
-        .toggle-button:hover {
-            background: #42a5fa; /* Azul claro más oscuro */
-            transform: scale(1.05);
-        }
-        .toggle-button:active {
-            transform: scale(0.95); /* Animación de pulsación */
-        }
-        .toggle-button i {
-            margin-left: 5px; /* Espacio entre texto y flecha */
-            transition: transform 0.3s;
-        }
-        .hidden {
-            display: none;
-        }
-        /* Animación para la descripción */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        /* Animación de deslizamiento */
-        @keyframes slideDown {
-            from { max-height: 0; opacity: 0; }
-            to { max-height: 500px; opacity: 1; }
-        }
-        .slide-down {
-            animation: slideDown 0.5s ease-in-out;
-            overflow: hidden;
-        }
-        /* Colores para categorías (más vivos) */
-        .category#ocio .links a {
-            background: #00bcd4; /* Turquesa vibrante */
-        }
-        .category#ocio .links a:hover {
-            background: #0097a7; /* Turquesa más oscuro */
-        }
-        .category#negocios .links a {
-            background: #673ab7; /* Morado vibrante */
-        }
-        .category#negocios .links a:hover {
-            background: #512da8; /* Morado más oscuro */
-        }
-        .category#wishlists .links a {
-            background: #ff5722; /* Naranja vibrante */
-        }
-        .category#wishlists .links a:hover {
-            background: #e64a19; /* Naranja más oscuro */
-        }
-        /* Animación de la flecha */
-        .rotate {
-            transform: rotate(180deg);
-        }
-    </style>
+  <!-- Favicon opcional y manifest si ya los tienes -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#19162d">
+
+  <!-- Favicon estándar -->
+  <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+
+  <!-- PNGs para navegadores modernos -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+
+  <!-- iPhone / iPad -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+
+  <!-- Safari (Pinned Tab en macOS) -->
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#19162d">
+
+  <!-- Color de la barra en móviles -->
+  <meta name="theme-color" content="#19162d">
+
+
+
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <!-- Fondo animado con Particles.js -->
-    <div id="particles-js"></div>
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <img class="avatar"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-zmIkbzVuamvhAtF-WcTHgojypu_u_YYisALIDfiBFIRPTy_h1PKyesZv2-6Q5CP9pVda423PjUL8YjCLj4j0p5j3UL3fJkNqSqpd-dsavoIOMwNVQ73OJiypaRD8xHAWM72YPjKQz6BJEQPLAFTjFq0sQUA7JMJJIgJo6O8zWNWFNjh0QdTVeC6Fp0o/s320/20240331_180531.jpg"
+        alt="Andrés Vásquez">
+      <h1>Andrés Vásquez</h1>
+      <p class="tagline">Proyectos, música, enlaces y contacto.</p>
 
-    <!-- Contenido de la página -->
-    <div class="container">
-        <div class="profile">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-zmIkbzVuamvhAtF-WcTHgojypu_u_YYisALIDfiBFIRPTy_h1PKyesZv2-6Q5CP9pVda423PjUL8YjCLj4j0p5j3UL3fJkNqSqpd-dsavoIOMwNVQ73OJiypaRD8xHAWM72YPjKQz6BJEQPLAFTjFq0sQUA7JMJJIgJo6O8zWNWFNjh0QdTVeC6Fp0o/s320/20240331_180531.jpg" alt="Perfil">
-            <h2>Andrés Vásquez</h2>
-        </div>
-
-        <!-- Descripción "Sobre mí" -->
-        <div class="description" onclick="toggleDescription()">
-            <strong>Sobre mí</strong>
-             <p id="desc-text">
-              ¡Qué pajó, mi gente! ¿Cómo están?
-              No estamos en tranque, pero les voy a echar un cuentico sobre mí:<br><br>
-              Soy ingeniero en gas e informática, con una mente más racional que emocional, más cercana a la estoicidad que al sentimentalismo. No soy de frases motivacionales, pero sí de historias reales. Por eso, mientras manejo y peleo con el tráfico, grabo mis “cuenticos de tranque” para Instagram: anécdotas, reflexiones y verdades sin filtro.<br><br>
-              Me gusta cocinar —especialmente si es para otros— y me encanta el deporte: desde voleibol hasta cycling indoor y outdoor. También le dedico su tiempo al gym porque mente sana, cuerpo sano.<br><br>
-              Emigré de Venezuela a Panamá en 2014, y aquí encontré una segunda casa donde he crecido profesionalmente en el mundo del soporte informático. Me apasiona la tecnología y siempre estoy buscando cómo optimizar procesos, resolver problemas y, claro, competir conmigo mismo en cada cosa que hago.<br><br>
-              Pero no solo soy técnico. También soy <strong>Artista</strong>. Bajo el nombre <strong>Andrestoteles</strong>, escribo y produzco canciones basadas en vivencias reales, con un enfoque de fe, superación y propósito. Además, compongo <strong>jingles comerciales</strong> que conectan con la gente porque tienen alma, no solo ritmo.<br><br>
-              Mi lema es: <em>“Andrés, no hay nada que no puedas hacer en este mundo”</em>. Y bajo esa convicción, sigo adelante, con los valores que me enseñó mi papá: hacer lo correcto y tratar a los demás como quiero que me traten a mí.
-    </p>
-        </div>
-
-        <!-- Redes Sociales Principales (siempre visible) -->
-        <div class="category">
-            <h3><i class="fas fa-users"></i> Redes Sociales</h3>
-            <div class="links">
-                <a href="http://www.instagram.com/andresvasquez90" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="http://tiktok.com/@vasquezandres90" target="_blank">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </a>
-                <a href="https://x.com/VasquezAndres90" target="_blank">
-                    <i class="fa-brands fa-x-twitter"></i> Twitter/X
-                </a>
-            </div>
-        </div>
-
-        <!-- Música (desplegable) -->
-        <div class="category" id="musica">
-            <button class="toggle-button" onclick="toggleCategory('musica')">
-                <i class="fas fa-music"></i> Mi música <i id="musica-arrow" class="fas fa-chevron-down"></i>
-            </button>
-            <div class="links hidden">
-                <a href="https://open.spotify.com/intl-es/artist/12JBtVm7IlbA7SSPCjLL40" target="_blank">
-                    <i class="fab fa-spotify"></i> Spotify
-                </a>
-                <a href="https://music.apple.com/es/artist/andrestoteles/1811336287" target="_blank">
-                    <i class="fab fa-apple"></i> Apple Music
-                </a>
-                <a href="https://music.amazon.com/artists/B0F6VV5Z5K/andrestoteles" target="_blank">
-                    <i class="fab fa-amazon"></i> Amazon Music
-                </a>
-                <a href="https://www.youtube.com/@andrestoteles" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube Music
-                </a>
-            </div>
-        </div>
-
-        <!-- Negocios y Contacto (desplegable) -->
-        <div class="category" id="negocios">
-            <button class="toggle-button" onclick="toggleCategory('negocios')">
-                <i class="fas fa-briefcase"></i>Negocios y Contacto <i id="negocios-arrow" class="fas fa-chevron-down"></i>
-            </button>
-            <div class="links hidden">
-                <a href="https://www.solutechpanama.com" target="_blank">
-                    <i class="fas fa-computer"></i> Solutech Panamá
-                </a>
-                <a href="https://www.market.com.ve" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> USA Market Valera
-                </a>
-                <a href="https://www.andrestoteles.com" target="_blank">
-                    <i class="fa-solid fa-star"></i></i> Andrestoteles
-                <a href="https://www.autopizzas.net" target="_blank">
-                    <i class="fas fa-pizza-slice"></i> Auto Pizzas
-                </a>
-                <a href="https://www.linkedin.com/in/andresvasquez90/" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="http://wa.me/50768886778" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="http://t.me/andresvasquez" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
-            </div>
-        </div>
-
-<!-- Ocio y Entretenimiento (desplegable) -->
-        <div class="category" id="ocio">
-            <button class="toggle-button" onclick="toggleCategory('ocio')">
-                <i class="fas fa-gamepad"></i>  Ocio y Entretenimiento <i id="ocio-arrow" class="fas fa-chevron-down"></i>
-            </button>
-            <div class="links hidden">
-                <a href="https://steamcommunity.com/id/andresvasquez/" target="_blank">
-                    <i class="fab fa-steam"></i> Steam
-                </a>
-                <a href="https://boardgamegeek.com/collection/user/Vsqz" target="_blank">
-                    <i class="fas fa-dice"></i> BoardGameGeek
-                </a>
-                <a href="https://www.fragrantica.es/miembros/95710" target="_blank">
-                    <i class="fa-solid fa-spray-can-sparkles"></i></i> Fragrantica
-                </a>
-                <a href="https://www.twitch.tv/vasquezandres" target="_blank">
-                    <i class="fab fa-twitch"></i> Twitch
-                </a>
-                <a href="https://www.youtube.com/c/AndresVasquez90" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-            </div>
-        </div>
-        <!-- Wishlists y Colecciones (desplegable) -->
-        <div class="category" id="wishlists">
-            <button class="toggle-button" onclick="toggleCategory('wishlists')">
-                <i class="fas fa-gift"></i>  Wishlists y Colecciones <i id="wishlists-arrow" class="fas fa-chevron-down"></i>
-            </button>
-            <div class="links hidden">
-                <a href="https://plisplis.com/wishlist.php?publicwishlist=7980affc-a8e6-46a3-98df-8a47262f88d6" target="_blank">
-                    <i class="fas fa-gift"></i> PlisPlis Wishlist
-                </a>
-                <a href="https://www.amazon.com/hz/wishlist/ls/33LNHZPI2D9WY" target="_blank">
-                  <i class="fab fa-amazon"></i> Wishlist Amazon
-                </a>
-            </div>
-        </div>
+      <!-- Redes debajo del nombre -->
+      <nav class="social-row" aria-label="Redes sociales">
+        <a href="https://x.com/VasquezAndres90" target="_blank" rel="noopener" aria-label="X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/andresvasquez90" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@andrestoteles" target="_blank" rel="noopener" aria-label="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://open.spotify.com/intl-es/artist/12JBtVm7IlbA7SSPCjLL40" target="_blank" rel="noopener" aria-label="Spotify">
+          <i class="fa-brands fa-spotify"></i>
+        </a>
+        <a href="https://tiktok.com/@vasquezandres90" target="_blank" rel="noopener" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        // Configuración de Particles.js
-        particlesJS("particles-js", {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800,
-                    },
-                },
-                color: {
-                    value: "#ffffff", // Color de las partículas
-                },
-                shape: {
-                    type: "circle", // Forma de las partículas
-                },
-                opacity: {
-                    value: 0.5,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false,
-                    },
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 0.1,
-                        sync: false,
-                    },
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200,
-                    },
-                },
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "repulse",
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push",
-                    },
-                    resize: true,
-                },
-                modes: {
-                    repulse: {
-                        distance: 100,
-                        duration: 0.4,
-                    },
-                    push: {
-                        particles_nb: 4,
-                    },
-                },
-            },
-            retina_detect: true,
-        });
+  <main class="container">
 
-        // Funcionalidad para mostrar/ocultar descripción
-        function toggleDescription() {
-            var desc = document.getElementById("desc-text");
-            if (desc.style.display === "none" || desc.style.display === "") {
-                desc.style.display = "block";
-                desc.classList.add("fade-in");
-            } else {
-                desc.style.display = "none";
-            }
+    <!-- ===== PÍLDORA EXPANDIBLE (MISMO BLOQUE) ===== -->
+    <section class="expandable" id="blk-about">
+      <button class="pill head" aria-expanded="false">
+        <span class="pill-title"><i class="fa-solid fa-user"></i> Sobre mí</span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div class="pill-body">
+        <div class="pill-content">
+            ¡Qué pajó, mi gente! ¿Cómo están?
+            No estamos en tranque, pero les voy a echar un cuentico sobre mí:<br><br>
+            Soy ingeniero en gas e informática, con una mente más racional que emocional, más cercana a la estoicidad que al sentimentalismo. No soy de frases motivacionales, pero sí de historias reales. Por eso, mientras manejo y peleo con el tráfico, grabo mis “cuenticos de tranque” para Instagram: anécdotas, reflexiones y verdades sin filtro.<br><br>
+            Me gusta cocinar —especialmente si es para otros— y me encanta el deporte: desde voleibol hasta cycling indoor y outdoor. También le dedico su tiempo al gym porque mente sana, cuerpo sano.<br><br>
+            Emigré de Venezuela a Panamá en 2014, y aquí encontré una segunda casa donde he crecido profesionalmente en el mundo del soporte informático. Me apasiona la tecnología y siempre estoy buscando cómo optimizar procesos, resolver problemas y, claro, competir conmigo mismo en cada cosa que hago.<br><br>
+            Pero no solo soy técnico. También soy <strong>Artista</strong>. Bajo el nombre <strong>Andrestoteles</strong>, escribo y produzco canciones basadas en vivencias reales, con un enfoque de fe, superación y propósito. Además, compongo <strong>jingles comerciales</strong> que conectan con la gente porque tienen alma, no solo ritmo.<br><br>
+            Mi lema es: <em>“Andrés, no hay nada que no puedas hacer en este mundo”</em>. Y bajo esa convicción, sigo adelante, con los valores que me enseñó mi papá: hacer lo correcto y tratar a los demás como quiero que me traten a mí.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REPRODUCTOR DE SPOTIFY ===== -->
+    <section class="spotify-player">
+    <iframe
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/3FmRGiAngg80CMK7hcDKuC?utm_source=generator"
+        width="100%" height="152" frameBorder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+    </iframe>
+    </section>
+
+
+    <!-- MÚSICA (categoría) -->
+    <section class="expandable" id="blk-music">
+      <button class="pill head" aria-expanded="false">
+        <span class="pill-title"><i class="fa-solid fa-music"></i> Música</span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div class="pill-body">
+        <a class="subpill" href="https://open.spotify.com/intl-es/artist/12JBtVm7IlbA7SSPCjLL40" target="_blank" rel="noopener">
+          <i class="fa-brands fa-spotify"></i> Spotify
+        </a>
+        <a class="subpill" href="https://music.apple.com/es/artist/andrestoteles/1811336287" target="_blank" rel="noopener">
+          <i class="fa-brands fa-apple"></i> Apple Music
+        </a>
+        <a class="subpill" href="https://music.amazon.com/artists/B0F6VV5Z5K/andrestoteles" target="_blank" rel="noopener">
+          <i class="fa-brands fa-amazon"></i> Amazon Music
+        </a>
+        <a class="subpill" href="https://www.youtube.com/@andrestoteles" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i> YouTube Music
+        </a>
+
+        <!-- Tarjeta uniforme para video (imagen -> YouTube) -->
+        <a class="subpill media" href="https://www.youtube.com/watch?v=3l_NHccC4I4" target="_blank" rel="noopener" aria-label="Tú ya estabas ahí - Video">
+          <img src="https://i.ytimg.com/vi/3l_NHccC4I4/hqdefault.jpg" alt="Tú ya estabas ahí - YouTube">
+          <span class="media-title"><i class="fa-solid fa-play"></i> Ver video en YouTube</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Negocios y contacto -->
+    <section class="expandable" id="blk-biz">
+      <button class="pill head" aria-expanded="false">
+        <span class="pill-title"><i class="fa-solid fa-briefcase"></i> Negocios y Contacto</span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div class="pill-body">
+        <a class="subpill" href="https://www.solutechpanama.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-computer"></i> Solutech Panamá
+        </a>
+        <a class="subpill" href="https://www.market.com.ve" target="_blank" rel="noopener">
+          <i class="fa-solid fa-store"></i> USA Market Valera
+        </a>
+        <a class="subpill" href="https://www.andrestoteles.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-star"></i> Andrestoteles
+        </a>
+        <a class="subpill" href="https://t.me/andresvasquez" target="_blank" rel="noopener">
+          <i class="fa-brands fa-telegram"></i> Telegram
+        </a>
+        <a class="subpill" href="https://wa.me/50768886778" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- Ocio -->
+    <section class="expandable" id="blk-fun">
+      <button class="pill head" aria-expanded="false">
+        <span class="pill-title"><i class="fa-solid fa-gamepad"></i> Ocio y Entretenimiento</span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div class="pill-body">
+        <a class="subpill" href="https://steamcommunity.com/id/andresvasquez/" target="_blank" rel="noopener">
+          <i class="fa-brands fa-steam"></i> Steam
+        </a>
+        <a class="subpill" href="https://boardgamegeek.com/collection/user/Vsqz" target="_blank" rel="noopener">
+          <i class="fa-solid fa-dice"></i> BoardGameGeek
+        </a>
+        <a class="subpill" href="https://www.fragrantica.es/miembros/95710" target="_blank" rel="noopener">
+          <i class="fa-solid fa-spray-can-sparkles"></i> Fragrantica
+        </a>
+        <a class="subpill" href="https://www.twitch.tv/vasquezandres" target="_blank" rel="noopener">
+          <i class="fa-brands fa-twitch"></i> Twitch
+        </a>
+        <a class="subpill" href="https://www.youtube.com/c/AndresVasquez90" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+      </div>
+    </section>
+
+    <!-- Wishlists -->
+    <section class="expandable" id="blk-wish">
+      <button class="pill head" aria-expanded="false">
+        <span class="pill-title"><i class="fa-solid fa-gift"></i> Wishlists y Colecciones</span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div class="pill-body">
+        <a class="subpill" href="https://plisplis.com/wishlist.php?publicwishlist=7980affc-a8e6-46a3-98df-8a47262f88d6" target="_blank" rel="noopener">
+          <i class="fa-solid fa-gift"></i> PlisPlis
+        </a>
+        <a class="subpill" href="https://www.amazon.com/hz/wishlist/ls/33LNHZPI2D9WY" target="_blank" rel="noopener">
+          <i class="fa-brands fa-amazon"></i> Lista Amazon
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="y"></span> Andrés Vásquez.</small>
+  </footer>
+
+  <script>
+    // Año del footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== ACORDEONES =====
+    const blocks = document.querySelectorAll('.expandable');
+
+    function setBlockState(block, open) {
+      const head = block.querySelector('.head');
+      const body = block.querySelector('.pill-body');
+
+      if (open) {
+        block.classList.add('open');
+        head.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.opacity = 1;
+      } else {
+        block.classList.remove('open');
+        head.setAttribute('aria-expanded', 'false');
+        body.style.maxHeight = 0;
+        body.style.opacity = 0;
+      }
+    }
+
+    function closeAll(except) {
+      blocks.forEach(b => {
+        if (b !== except) {
+          setBlockState(b, false);
         }
+      });
+    }
 
-        // Funcionalidad para desplegar/ocultar categorías
-        function toggleCategory(categoryId) {
-            var category = document.getElementById(categoryId);
-            var links = category.querySelector(".links");
-            var arrow = document.getElementById(`${categoryId}-arrow`);
-            if (links.classList.contains("hidden")) {
-                links.classList.remove("hidden");
-                links.classList.add("slide-down");
-                arrow.classList.add("rotate");
-            } else {
-                links.classList.add("hidden");
-                arrow.classList.remove("rotate");
-            }
+    // Inicializar acordeones
+    blocks.forEach(block => {
+      const head = block.querySelector('.head');
+      const body = block.querySelector('.pill-body');
+
+      // Estado inicial: todo cerrado
+      body.style.maxHeight = 0;
+      body.style.opacity = 0;
+      block.classList.remove('open');
+      head.setAttribute('aria-expanded', 'false');
+
+      head.addEventListener('click', () => {
+        const isOpen = block.classList.contains('open');
+
+        if (isOpen) {
+          // Si ya está abierto, lo cerramos
+          setBlockState(block, false);
+        } else {
+          // Cerramos los demás y abrimos este
+          closeAll(block);
+          setBlockState(block, true);
         }
-    </script>
+      });
+    });
+
+    // Recalcular alturas en resize por si cambia el contenido
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.expandable.open .pill-body').forEach(body => {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    });
+  </script>
+
 </body>
 </html>
