@@ -387,58 +387,54 @@
       }
     }
 
-    // ===== SALUDO DINÁMICO + DETECCIÓN REAL DE ORIGEN =====
+    // ===== SALUDO DINÁMICO + ORIGEN IG/TIKTOK =====
     (function(){
-
       const tagline = document.querySelector('.tagline');
-      const originEl = document.getElementById('origin-msg');
-
-      if (!tagline || !originEl) return;
+      if (!tagline) return;
 
       // --- Saludo según hora
       const h = new Date().getHours();
-      let saludo = (h < 6) ? 'Buenas noches'
-                : (h < 12) ? 'Buenos días'
-                : (h < 19) ? 'Buenas tardes'
-                : 'Buenas noches';
+      let saludo = (h < 6) ? 'buenas noches'
+                : (h < 12) ? 'buenos días'
+                : (h < 19) ? 'buenas tardes'
+                : 'buenas noches';
 
-      // Mensaje base:
-      const baseMsg = 'Aquí encontrarás todos mis enlaces, redes sociales y proyectos. ¡Gracias por tu apoyo!';
+      // Mensaje base
+      const base = 'Aquí encontrarás todos mis enlaces, redes sociales y proyectos. Te agradezco mucho tu apoyo y no olvides escuchar mi música y compartirla.';
 
-      // --- Detectar red social REAL por referrer
+      // --- Detectar origen: primero por parámetro, luego por referrer
+      const params = new URLSearchParams(window.location.search);
+      let from = (params.get('from') || params.get('utm_source') || '').toLowerCase();
+
       const ref = document.referrer.toLowerCase();
-      let origen = null;
-
-      if(ref.includes('instagram.com') || ref.includes('l.instagram.com')){
-        origen = 'instagram';
-      } else if(ref.includes('tiktok.com')){
-        origen = 'tiktok';
+      if (!from) {
+        if (ref.includes('instagram.com') || ref.includes('l.instagram.com')) {
+          from = 'instagram';
+        } else if (ref.includes('tiktok.com')) {
+          from = 'tiktok';
+        }
       }
 
-      // --- Construir mensaje
-      if(origen === 'instagram'){
-        originEl.textContent = `${saludo}, gracias por venir desde Instagram 👋. ${baseMsg}`;
-        originEl.classList.add('visible');
+      // --- Construir texto final
+      let texto;
 
-        if(typeof gtag === 'function'){
-          gtag('event','origin_detected',{origin:'instagram'});
+      if (from === 'instagram') {
+        texto = `Hola, ${saludo}, gracias por venir desde Instagram 👋. ${base}`;
+        if (typeof gtag === 'function') {
+          gtag('event','origin_detected',{ origin: 'instagram' });
         }
-
-      } else if(origen === 'tiktok'){
-        originEl.textContent = `${saludo}, gracias por venir desde TikTok 🔥. ${baseMsg}`;
-        originEl.classList.add('visible');
-
-        if(typeof gtag === 'function'){
-          gtag('event','origin_detected',{origin:'tiktok'});
+      } else if (from === 'tiktok') {
+        texto = `Hola, ${saludo}, gracias por venir desde TikTok 🔥. ${base}`;
+        if (typeof gtag === 'function') {
+          gtag('event','origin_detected',{ origin: 'tiktok' });
         }
-
       } else {
-        // visitante normal
-        tagline.textContent = `${saludo}. Proyectos, música, enlaces y contacto.`;
+        // Visitante normal
+        texto = `${saludo.charAt(0).toUpperCase() + saludo.slice(1)}. Proyectos, música, enlaces y contacto.`;
       }
 
+      tagline.textContent = texto;
     })();
-
 
   </script>
 
