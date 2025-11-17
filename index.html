@@ -263,6 +263,12 @@
           // Cerramos los demás y abrimos este
           closeAll(block);
           setBlockState(block, true);
+
+                // 🔥 GA4 - registrar apertura de acordeón
+              const title = head.innerText.trim();
+              gtag('event', 'accordion_open', {
+                section: title
+              });
         }
       });
     });
@@ -271,6 +277,19 @@
     window.addEventListener('resize', () => {
       document.querySelectorAll('.expandable.open .pill-body').forEach(body => {
         body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    });
+
+    // 🔥 GA4 - rastrear clics en TODOS los enlaces
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        const text = link.innerText.trim();
+        const url = link.href;
+
+        gtag('event', 'link_click', {
+          link_text: text,
+          link_url: url
+        });
       });
     });
   </script>
