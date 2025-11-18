@@ -96,6 +96,16 @@
           Compartir
         </button>
       </div>
+      <!-- ... Cambio de idioma ... -->
+      <div class="hero-switches">
+      <button id="theme-toggle" type="button" class="switch-btn" aria-label="Cambiar tema">
+        <i class="fa-regular fa-moon"></i>
+      </button>
+      <button id="lang-toggle" type="button" class="switch-btn" aria-label="Cambiar idioma">
+        <span id="lang-toggle-label">ES</span>
+      </button>
+    </div>
+
       <p class="origin-msg" id="origin-msg" aria-live="polite"></p>
     </div>
   </header>
@@ -105,11 +115,12 @@
     <!-- ===== PÍLDORA EXPANDIBLE (MISMO BLOQUE) ===== -->
     <section class="expandable" id="blk-about">
       <button class="pill head" aria-expanded="false">
-        <span class="pill-title"><i class="fa-solid fa-user"></i> Sobre mí</span>
+        <span class="pill-title"><i class="fa-solid fa-user"></i> <span data-i18n="sec_about">Sobre mí</span></span>
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="pill-body">
         <div class="pill-content">
+          <p data-i18n="about_text">
             ¡Qué pajó, mi gente! ¿Cómo están?
             No estamos en tranque, pero les voy a echar un cuentico sobre mí:<br><br>
             Soy ingeniero en gas e informática, con una mente más racional que emocional, más cercana a la estoicidad que al sentimentalismo. No soy de frases motivacionales, pero sí de historias reales. Por eso, mientras manejo y peleo con el tráfico, grabo mis “cuenticos de tranque” para Instagram: anécdotas, reflexiones y verdades sin filtro.<br><br>
@@ -117,6 +128,7 @@
             Emigré de Venezuela a Panamá en 2014, y aquí encontré una segunda casa donde he crecido profesionalmente en el mundo del soporte informático. Me apasiona la tecnología y siempre estoy buscando cómo optimizar procesos, resolver problemas y, claro, competir conmigo mismo en cada cosa que hago.<br><br>
             Pero no solo soy técnico. También soy <strong>Artista</strong>. Bajo el nombre <strong>Andrestoteles</strong>, escribo y produzco canciones basadas en vivencias reales, con un enfoque de fe, superación y propósito. Además, compongo <strong>jingles comerciales</strong> que conectan con la gente porque tienen alma, no solo ritmo.<br><br>
             Mi lema es: <em>“Andrés, no hay nada que no puedas hacer en este mundo”</em>. Y bajo esa convicción, sigo adelante, con los valores que me enseñó mi papá: hacer lo correcto y tratar a los demás como quiero que me traten a mí.
+           </p>
         </div>
       </div>
     </section>
@@ -137,7 +149,10 @@
     <!-- MÚSICA (categoría) -->
     <section class="expandable" id="blk-music">
       <button class="pill head" aria-expanded="false">
-        <span class="pill-title"><i class="fa-solid fa-music"></i> Música</span>
+        <span class="pill-title">
+          <i class="fa-solid fa-music"></i>
+          <span data-i18n="sec_music">Música</span>
+        </span>
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="pill-body">
@@ -165,7 +180,10 @@
     <!-- Negocios y contacto -->
     <section class="expandable" id="blk-biz">
       <button class="pill head" aria-expanded="false">
-        <span class="pill-title"><i class="fa-solid fa-briefcase"></i> Negocios y Contacto</span>
+        <span class="pill-title">
+          <i class="fa-solid fa-briefcase"></i>
+          <span data-i18n="sec_business">Negocios y Contacto</span>
+        </span>
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="pill-body">
@@ -190,7 +208,10 @@
     <!-- Ocio -->
     <section class="expandable" id="blk-fun">
       <button class="pill head" aria-expanded="false">
-        <span class="pill-title"><i class="fa-solid fa-gamepad"></i> Ocio y Entretenimiento</span>
+        <span class="pill-title">
+          <i class="fa-solid fa-gamepad"></i>
+          <span data-i18n="sec_leisure">Ocio y Entretenimiento</span>
+        </span>
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="pill-body">
@@ -215,7 +236,10 @@
     <!-- Wishlists -->
     <section class="expandable" id="blk-wish">
       <button class="pill head" aria-expanded="false">
-        <span class="pill-title"><i class="fa-solid fa-gift"></i> Wishlists y Colecciones</span>
+        <span class="pill-title">
+          <i class="fa-solid fa-gift"></i>
+          <span data-i18n="sec_wishlist">Wishlists y Colecciones</span>
+        </span>
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="pill-body">
@@ -230,8 +254,12 @@
   </main>
 
   <footer class="footer">
-    <small>© <span id="y"></span> Andrés Vásquez.</small>
+    <small>
+      © <span id="y"></span>
+      <span data-i18n="footer_text">Andrés Vásquez.</span>
+    </small>
   </footer>
+
 
   <script>
     // Año del footer
@@ -388,26 +416,29 @@
     }
 
     // ===== SALUDO DINÁMICO + ORIGEN IG/TIKTOK =====
-    (function(){
-      const tagline = document.querySelector('.tagline');
-      if (!tagline) return;
+    // ===== TEMA OSCURO/CLARO + IDIOMA + SALUDO =====
 
-      // --- Saludo según hora
-      const h = new Date().getHours();
-      let saludo = (h < 6) ? 'buenas noches'
-                : (h < 12) ? 'buenos días'
-                : (h < 19) ? 'buenas tardes'
-                : 'buenas noches';
+    // idioma actual (global simple)
+    let currentLang = 'es';
 
-      // Mensaje base
-      const base = 'Aquí encontrarás todos mis enlaces, redes sociales y proyectos. Te agradezco mucho tu apoyo y no olvides escuchar mi música y compartirla.';
-
-      // --- Detectar origen: primero por parámetro, luego por referrer
+    // Detectar origen (instagram / tiktok) por parámetro o referrer
+    function detectOrigin(){
       const params = new URLSearchParams(window.location.search);
       let from = (params.get('from') || params.get('utm_source') || '').toLowerCase();
 
-      const ref = document.referrer.toLowerCase();
+      // 1) Detectar por path corto: /t -> TikTok, /ig -> Instagram (si quieres usarlo)
+      const path = window.location.pathname.toLowerCase();
       if (!from) {
+        if (path === '/t' || path === '/t/') {
+          from = 'tiktok';
+        } else if (path === '/ig' || path === '/ig/') {
+          from = 'instagram';
+        }
+      }
+
+      // 2) Si aún no hay origen, intentar por referrer
+      if (!from) {
+        const ref = document.referrer.toLowerCase();
         if (ref.includes('instagram.com') || ref.includes('l.instagram.com')) {
           from = 'instagram';
         } else if (ref.includes('tiktok.com')) {
@@ -415,26 +446,193 @@
         }
       }
 
-      // --- Construir texto final
-      let texto;
+      return from;
+    }
 
-      if (from === 'instagram') {
-        texto = `Hola, ${saludo}, gracias por venir desde Instagram 👋. ${base}`;
-        if (typeof gtag === 'function') {
-          gtag('event','origin_detected',{ origin: 'instagram' });
+
+    // Construir saludo según idioma, hora y origen
+    function updateGreeting(){
+      const tagline = document.querySelector('.tagline');
+      if (!tagline) return;
+
+      const from = detectOrigin();
+      const h = new Date().getHours();
+      const timeSlot = (h < 6) ? 'night' : (h < 12) ? 'morning' : (h < 19) ? 'afternoon' : 'night';
+
+      let text;
+
+      if (currentLang === 'es') {
+        const saludo =
+          timeSlot === 'morning' ? 'Buenos días' :
+          timeSlot === 'afternoon' ? 'Buenas tardes' :
+          'Buenas noches';
+
+        const base = 'Aquí encontrarás todos mis enlaces, redes sociales y proyectos. Te agradezco mucho tu apoyo y no olvides escuchar mi música y compartirla.';
+
+        if (from === 'instagram') {
+          text = `Hola, ${saludo.toLowerCase()}, gracias por venir desde Instagram 👋. ${base}`;
+        } else if (from === 'tiktok') {
+          text = `Hola, ${saludo.toLowerCase()}, gracias por venir desde TikTok 🔥. ${base}`;
+        } else {
+          text = `${saludo}. Proyectos, música, enlaces y contacto.`;
         }
-      } else if (from === 'tiktok') {
-        texto = `Hola, ${saludo}, gracias por venir desde TikTok 🔥. ${base}`;
-        if (typeof gtag === 'function') {
-          gtag('event','origin_detected',{ origin: 'tiktok' });
+
+      } else { // EN
+        const salute =
+          timeSlot === 'morning' ? 'Good morning' :
+          timeSlot === 'afternoon' ? 'Good afternoon' :
+          'Good evening';
+
+        const base = 'Here you will find all my links, social media and projects. Thanks a lot for your support and don’t forget to listen to my music and share it.';
+
+        if (from === 'instagram') {
+          text = `Hi, ${salute.toLowerCase()}, thanks for coming from Instagram 👋. ${base}`;
+        } else if (from === 'tiktok') {
+          text = `Hi, ${salute.toLowerCase()}, thanks for coming from TikTok 🔥. ${base}`;
+        } else {
+          text = `${salute}. Projects, music, links and contact.`;
         }
-      } else {
-        // Visitante normal
-        texto = `${saludo.charAt(0).toUpperCase() + saludo.slice(1)}. Proyectos, música, enlaces y contacto.`;
       }
 
-      tagline.textContent = texto;
-    })();
+      tagline.textContent = text;
+
+      // Loguear origen+idioma una sola vez
+      if (typeof gtag === 'function' && from) {
+        gtag('event', 'origin_detected', {
+          origin: from,
+          lang: currentLang
+        });
+      }
+    }
+
+    // Tema
+    function applyTheme(theme){
+      const root = document.documentElement;
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('vasquez_theme', theme);
+
+      const icon = document.querySelector('#theme-toggle i');
+      if (icon){
+        icon.classList.remove('fa-moon','fa-sun');
+        if (theme === 'dark'){
+          icon.classList.add('fa-moon');
+        } else {
+          icon.classList.add('fa-sun');
+        }
+      }
+    }
+
+    // ===== TRADUCCIONES BÁSICAS =====
+    const translations = {
+      es: {
+        hero_name: 'Andrés Vásquez',
+        btn_copy: 'Copiar info',
+        btn_share: 'Compartir',
+        sec_about: 'Sobre mí',
+        sec_music: 'Música',
+        sec_business: 'Negocios y Contacto',
+        sec_leisure: 'Ocio y Entretenimiento',
+        sec_wishlist: 'Wishlists y Colecciones',
+        about_text: `
+          ¡Qué pajó, mi gente! ¿Cómo están?<br><br>
+          No estamos en tranque, pero les voy a echar un cuentico sobre mí:<br><br>
+          Soy ingeniero en gas e informática, con una mente más racional que emocional, más cercana a la estoicidad que al sentimentalismo. No soy de frases motivacionales, pero sí de historias reales. Por eso, mientras manejo y peleo con el tráfico, grabo mis “cuenticos de tranque” para Instagram: anécdotas, reflexiones y verdades sin filtro.<br><br>
+          Me gusta cocinar —especialmente si es para otros— y me encanta el deporte: desde voleibol hasta cycling indoor y outdoor. También le dedico su tiempo al gym porque mente sana, cuerpo sano.<br><br>
+          Emigré de Venezuela a Panamá en 2014, y aquí encontré una segunda casa donde he crecido profesionalmente en el mundo del soporte informático. Me apasiona la tecnología y siempre estoy buscando cómo optimizar procesos, resolver problemas y, claro, competir conmigo mismo en cada cosa que hago.<br><br>
+          Pero no solo soy técnico. También soy <strong>Artista</strong>. Bajo el nombre <strong>Andrestoteles</strong>, escribo y produzco canciones basadas en vivencias reales, con un enfoque de fe, superación y propósito. Además, compongo <strong>jingles comerciales</strong> que conectan con la gente porque tienen alma, no solo ritmo.<br><br>
+          Mi lema es: <em>“Andrés, no hay nada que no puedas hacer en este mundo”</em>. Y bajo esa convicción, sigo adelante, con los valores que me enseñó mi papá: hacer lo correcto y tratar a los demás como quiero que me traten a mí.
+        `,
+        footer_text: '© 2025 Andrés Vásquez.'
+      },
+      en: {
+        hero_name: 'Andrés Vásquez',
+        btn_copy: 'Copy info',
+        btn_share: 'Share',
+        sec_about: 'About me',
+        sec_music: 'Music',
+        sec_business: 'Business & Contact',
+        sec_leisure: 'Leisure & Entertainment',
+        sec_wishlist: 'Wishlists & Collections',
+        about_text: `
+          What’s up, everyone? Hope you’re doing well.<br><br>
+          Let me tell you a little story about who I am and what I do.<br><br>
+          I’m a gas and IT engineer —someone who thinks more logically than emotionally— leaning more toward stoicism than romanticism. I’m not the motivational-quotes type, but definitely the “real stories” type. That’s why, while I’m stuck in traffic, I record my “traffic stories” for Instagram: short thoughts, anecdotes, and honest reflections without filters.<br><br>
+          I love cooking —especially when it’s for others— and I’m really into sports: volleyball, indoor cycling, outdoor cycling, and of course, the gym. Healthy mind, healthy body.<br><br>
+          I emigrated from Venezuela to Panama in 2014, and here I found a second home where I grew professionally in the IT support world. I’m passionate about technology and always looking for ways to optimize, solve problems, and compete with myself in everything I do.<br><br>
+          But I’m not only a technician. I’m also an <strong>Artist</strong>. Under the name <strong>Andrestoteles</strong>, I write and produce music based on real-life experiences with a focus on faith, resilience, and purpose. I also compose <strong>commercial jingles</strong> that connect with people because they have soul —not just rhythm.<br><br>
+          My motto is: <em>“Andrés, there’s nothing you can’t do in this world.”</em> And with that mindset, I keep moving forward, guided by the values my father taught me: do the right thing and treat others the way you want to be treated.
+        `,
+        footer_text: '© 2025 Andrés Vásquez.'
+      }
+    };
+
+    function applyTranslations(){
+      const dict = translations[currentLang] || translations.es;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (!key || !dict[key]) return;
+
+        if (key === 'about_text'){
+          el.innerHTML = dict[key];   // respeta <br>, <strong>, <em>, etc.
+        } else {
+          el.textContent = dict[key]; // seguro para el resto
+        }
+      });
+    }
+
+
+
+    function initTheme(){
+      const saved = localStorage.getItem('vasquez_theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const startTheme = (saved === 'light' || saved === 'dark') ? saved : (prefersDark ? 'dark' : 'light');
+
+      applyTheme(startTheme);
+
+      const btn = document.getElementById('theme-toggle');
+      if (btn){
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme') || 'dark';
+          const next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        });
+      }
+    }
+
+    // Idioma
+    function initLanguage(){
+      const saved = localStorage.getItem('vasquez_lang');
+      const browserIsEnglish = navigator.language && navigator.language.toLowerCase().startsWith('en');
+
+      currentLang =
+        (saved === 'es' || saved === 'en') ? saved :
+        (browserIsEnglish ? 'en' : 'es');
+
+      const langBtn = document.getElementById('lang-toggle');
+      const label = document.getElementById('lang-toggle-label');
+
+      if (label){
+        label.textContent = currentLang.toUpperCase();
+      }
+
+      if (langBtn){
+        langBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'es' ? 'en' : 'es';
+          localStorage.setItem('vasquez_lang', currentLang);
+          if (label) label.textContent = currentLang.toUpperCase();
+          applyTranslations();
+          updateGreeting();
+        });
+      }
+
+      applyTranslations();
+      updateGreeting();
+    }
+
+    // Inicializar todo
+    initTheme();
+    initLanguage();
+
 
   </script>
 
